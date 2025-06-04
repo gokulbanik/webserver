@@ -22,12 +22,20 @@
     }
     .logo {
       max-width: 150px;
-      margin-bottom: 20px;
+    }
+    .logo-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 30px;
     }
   </style>
 </head>
 <body>
-  <img src="/images/nginx.png" alt="NGINX Logo" class="logo" />
+  <div class="logo-bar">
+    <img src="/images/nginx.png" alt="NGINX Logo" class="logo" />
+    <img src="/images/mariadb.png" alt="MariaDB Logo" class="logo" />
+  </div>
 
   {% set ansible_host = hostvars['localhost'] %}
   {% set webhost = hostvars[inventory_hostname] %}

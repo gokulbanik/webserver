@@ -50,6 +50,15 @@
     mode: '0644'
   become: yes
 
+- name: Copy mariadb logo to nginx web root
+  ansible.builtin.copy:
+    src: mariadb.png
+    dest: /var/www/localhost/htdocs/images/mariadb.png
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+
 - name: Update nginx.conf to listen on all interfaces
   ansible.builtin.replace:
     path: /etc/nginx/nginx.conf
