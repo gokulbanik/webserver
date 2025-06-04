@@ -7,6 +7,7 @@
   ansible.builtin.setup:
   delegate_to: localhost
   run_once: true
+  register: ansible_control_facts
 
 - name: Gather facts for DB host
   ansible.builtin.setup:
