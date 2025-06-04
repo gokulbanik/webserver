@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Server Info</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    img { max-width: 200px; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <img src="images/nginx.png" alt="Nginx Logo" />
+  <h2>Server Information:</h2>
+  <p>Hostname: {{ ansible_hostname }}</p>
+  <p>IP Address: {{ ansible_default_ipv4.address }}</p>
+  <p>Operating System: Gentoo {{ ansible_distribution_version }}</p>
+  <p>Kernel: {{ ansible_kernel }}</p>
+  <p>Architecture: {{ ansible_architecture }}</p>
+  <p>Deployment Time: {{ ansible_date_time.iso8601 }}</p>
+  <br>
+  <strong>Your Nginx web server is running successfully!</strong><br>
+  <em>Deployed with Ansible automation</em>
+</body>
+</html>
