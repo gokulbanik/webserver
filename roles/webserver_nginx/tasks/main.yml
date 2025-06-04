@@ -2,9 +2,11 @@
 ---
 # tasks file for webserver_nginx
 
+
 - name: Gather facts for DB host
   ansible.builtin.setup:
   delegate_to: "{{ groups['db'][0] }}"
+  delegate_facts: true
   run_once: true
 
 - name: Gather system facts on web host
