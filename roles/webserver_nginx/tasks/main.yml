@@ -26,6 +26,24 @@
     mode: '0755'
   become: yes
 
+- name: Ensure images directory exists
+  ansible.builtin.file:
+    path: /var/www/localhost/htdocs/images
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  become: yes
+
+- name: Copy server icon image to nginx web root
+  ansible.builtin.copy:
+    src: server.png
+    dest: /var/www/localhost/htdocs/images/nginx.png
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+
 - name: Update nginx.conf to listen on all interfaces
   ansible.builtin.replace:
     path: /etc/nginx/nginx.conf
