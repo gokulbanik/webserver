@@ -35,11 +35,11 @@
 
   <div class="server-block">
     <h2>Ansible Control Node Information:</h2>
-    <p><strong>Hostname:</strong> {{ ansiblehost.hostname | default('N/A') }}</p>
-    <p><strong>IP Address:</strong> {{ ansiblehost.default_ipv4.address | default('N/A') }}</p>
-    <p><strong>Operating System:</strong> {{ ansiblehost.distribution | default('N/A') }} {{ ansiblehost.distribution_version | default('N/A') }}</p>
-    <p><strong>Kernel:</strong> {{ ansiblehost.kernel | default('N/A') }}</p>
-    <p><strong>Architecture:</strong> {{ ansiblehost.architecture | default('N/A') }}</p>
+    <p><strong>Hostname:</strong> {{ ansible_host.hostname | default('N/A') }}</p>
+    <p><strong>IP Address:</strong> {{ ansible_host.default_ipv4.address | default('N/A') }}</p>
+    <p><strong>Operating System:</strong> {{ ansible_host.distribution | default('N/A') }} {{ ansible_host.distribution_version | default('N/A') }}</p>
+    <p><strong>Kernel:</strong> {{ ansible_host.kernel | default('N/A') }}</p>
+    <p><strong>Architecture:</strong> {{ ansible_host.architecture | default('N/A') }}</p>
   </div>
 
   <div class="server-block">
