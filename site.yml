@@ -6,10 +6,6 @@
     - debug:
         msg: "Control node facts gathered"
 
-- name: Show all facts
-  debug:
-    var: hostvars['localhost']
-    
 - name: Set up Web Server
   hosts: web
   gather_facts: yes
