@@ -29,17 +29,17 @@
 <body>
   <img src="/images/nginx.png" alt="NGINX Logo" class="logo" />
 
-  {% set ansiblehost = hostvars[groups['ansible'][0]] %}
+  {% set ansible_host = hostvars['localhost'] %}
   {% set webhost = hostvars[inventory_hostname] %}
   {% set dbhost = hostvars[groups['db'][0]] %}
 
   <div class="server-block">
     <h2>Ansible Control Node Information:</h2>
-    <p><strong>Hostname:</strong> {{ ansiblehost.ansible_hostname | default('N/A') }}</p>
-    <p><strong>IP Address:</strong> {{ ansiblehost.ansible_default_ipv4.address | default('N/A') }}</p>
-    <p><strong>Operating System:</strong> Gentoo {{ ansiblehost.ansible_distribution_version | default('N/A') }}</p>
-    <p><strong>Kernel:</strong> {{ ansiblehost.ansible_kernel | default('N/A') }}</p>
-    <p><strong>Architecture:</strong> {{ ansiblehost.ansible_architecture | default('N/A') }}</p>
+    <p><strong>Hostname:</strong> {{ ansiblehost.hostname | default('N/A') }}</p>
+    <p><strong>IP Address:</strong> {{ ansiblehost.default_ipv4.address | default('N/A') }}</p>
+    <p><strong>Operating System:</strong> {{ ansiblehost.distribution | default('N/A') }} {{ ansiblehost.distribution_version | default('N/A') }}</p>
+    <p><strong>Kernel:</strong> {{ ansiblehost.kernel | default('N/A') }}</p>
+    <p><strong>Architecture:</strong> {{ ansiblehost.architecture | default('N/A') }}</p>
   </div>
 
   <div class="server-block">
