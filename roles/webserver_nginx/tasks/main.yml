@@ -2,8 +2,13 @@
 ---
 # tasks file for webserver_nginx
 
-- name: Gather system facts
+- name: Gather system facts on web host
   ansible.builtin.setup:
+
+- name: Gather facts for DB host
+  ansible.builtin.setup:
+  delegate_to: "{{ groups['db'][0] }}"
+  run_once: true
 
 - name: Install NGINX
   ansible.builtin.command: emerge --autounmask-continue --ask=n nginx
@@ -58,4 +63,3 @@
     dest: /var/www/localhost/htdocs/index.html
     mode: '0644'
   become: yes
-

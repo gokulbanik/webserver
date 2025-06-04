@@ -15,21 +15,12 @@
 
   <hr>
 
-  <h2>Ansible Control Node Information:</h2>
-  {% set ansible_host = groups['ansible'][0] %}
-  <p>Hostname: {{ hostvars[ansible_host].ansible_hostname }}</p>
-  <p>IP Address: {{ hostvars[ansible_host].ansible_default_ipv4.address }}</p>
-  <p>Operating System: {{ hostvars[ansible_host].ansible_distribution }} {{ hostvars[ansible_host].ansible_distribution_version }}</p>
-  <p>Kernel: {{ hostvars[ansible_host].ansible_kernel }}</p>
-
-  <hr>
-
   <h2>Database Server Information:</h2>
   {% set db_host = groups['db'][0] %}
-  <p>Hostname: {{ hostvars[db_host].ansible_hostname }}</p>
-  <p>IP Address: {{ hostvars[db_host].ansible_default_ipv4.address }}</p>
-  <p>Operating System: {{ hostvars[db_host].ansible_distribution }} {{ hostvars[db_host].ansible_distribution_version }}</p>
-  <p>Kernel: {{ hostvars[db_host].ansible_kernel }}</p>
+  <p>Hostname: {{ hostvars[db_host].ansible_hostname | default('N/A') }}</p>
+  <p>IP Address: {{ hostvars[db_host].ansible_default_ipv4.address | default('N/A') }}</p>
+  <p>Operating System: {{ hostvars[db_host].ansible_distribution | default('N/A') }} {{ hostvars[db_host].ansible_distribution_version | default('') }}</p>
+  <p>Kernel: {{ hostvars[db_host].ansible_kernel | default('N/A') }}</p>
 
   <br>
   <strong>Your Nginx web server is running successfully!</strong><br>
