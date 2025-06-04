@@ -1,18 +1,43 @@
-#SPDX-License-Identifier: MIT-0
+# SPDX-License-Identifier: MIT-0
 ---
 # tasks file for webserver_nginx
 
+- name: Gather system facts
+  ansible.builtin.setup:
 
-- name: Install NGINX with required USE flags
+- name: Install NGINX
   ansible.builtin.command: emerge --autounmask-continue --ask=n nginx
   args:
-    creates: /usr/sbin/nginx  # Prevents re-running if nginx is already installed
+    creates: /usr/sbin/nginx
   become: yes
 
-- name: Ensure NGINX service is enabled and started
+- name: Ensure NGINX service is enabled
   ansible.builtin.service:
     name: nginx
     enabled: yes
-    state: started
+  become: yes
+
+- name: Ensure NGINX web root exists
+  ansible.builtin.file:
+    path: /var/www/localhost/htdocs
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  become: yes
+
+- name: Update nginx.conf to listen on all interfaces
+  ansible.builtin.replace:
+    path: /etc/nginx/nginx.conf
+    regexp: 'listen\s+127\.0\.0\.1\s*;'
+    replace: 'listen 80;'
+  become: yes
+  notify: Restart nginx
+
+- name: Deploy server info to index.html
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: /var/www/localhost/htdocs/index.html
+    mode: '0644'
   become: yes
 
