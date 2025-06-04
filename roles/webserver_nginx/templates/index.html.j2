@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Server Info</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    img { max-width: 200px; margin-bottom: 20px; }
+  </style>
 </head>
 <body>
+  <img src="images/nginx.png" alt="Nginx Logo" />
   <h2>Server Information:</h2>
   <p>Hostname: {{ ansible_hostname }}</p>
   <p>IP Address: {{ ansible_default_ipv4.address }}</p>
