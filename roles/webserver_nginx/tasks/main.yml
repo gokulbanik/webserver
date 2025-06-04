@@ -37,7 +37,7 @@
 
 - name: Copy server icon image to nginx web root
   ansible.builtin.copy:
-    src: server.png
+    src: nginx.png
     dest: /var/www/localhost/htdocs/images/nginx.png
     owner: root
     group: root
