@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Server Info</title>
 </head>
 <body>
   <h2>Web Server Information:</h2>
-  <p>Hostname: {{ ansible_hostname }}</p>
-  <p>IP Address: {{ ansible_default_ipv4.address }}</p>
-  <p>Operating System: Gentoo {{ ansible_distribution_version }}</p>
-  <p>Kernel: {{ ansible_kernel }}</p>
-  <p>Architecture: {{ ansible_architecture }}</p>
-  <p>Deployment Time: {{ ansible_date_time.iso8601 }}</p>
+  {% set webhost = hostvars[inventory_hostname] %}
+  <p>Hostname: {{ webhost.ansible_hostname | default('N/A') }}</p>
+  <p>IP Address: {{ webhost.ansible_default_ipv4.address | default('N/A') }}</p>
+  <p>Operating System: Gentoo {{ webhost.ansible_distribution_version | default('N/A') }}</p>
+  <p>Kernel: {{ webhost.ansible_kernel | default('N/A') }}</p>
+  <p>Architecture: {{ webhost.ansible_architecture | default('N/A') }}</p>
+  <p>Deployment Time: {{ webhost.ansible_date_time.iso8601 | default('N/A') }}</p>
 
   <h2>Database Server Information:</h2>
   {% set dbhost = hostvars[groups['db'][0]] %}
@@ -20,11 +21,11 @@
   <p>Operating System: Gentoo {{ dbhost.ansible_distribution_version | default('N/A') }}</p>
   <p>Kernel: {{ dbhost.ansible_kernel | default('N/A') }}</p>
 
-  <br>
-  <strong>Your Nginx web server is running successfully!</strong><br>
+  <br />
+  <strong>Your Nginx web server is running successfully!</strong><br />
   <em>Deployed with Ansible automation</em>
 
-  <br><br>
-  <img src="/images/nginx.png" alt="Nginx Logo" style="width:150px;"/>
+  <br /><br />
+  <img src="/images/nginx.png" alt="Nginx Logo" style="width:150px;" />
 </body>
 </html>
