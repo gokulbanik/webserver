@@ -1,0 +1,21 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for db_mariadb
+
+- name: Install MariaDB server package
+  package:
+    name: mariadb
+    state: present
+
+- name: Initialize MariaDB data directory if not initialized
+  command: mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+  args:
+    creates: /var/lib/mysql/mysql
+  become: yes
+
+- name: Start MariaDB service
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+  become: yes

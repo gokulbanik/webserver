@@ -1,0 +1,18 @@
+---
+- name: Install NGINX
+  package:
+    name: nginx
+    state: present
+  when: web_server == "nginx"
+
+- name: Install Apache
+  package:
+    name: apache2
+    state: present
+  when: web_server == "apache"
+
+- name: Enable and start web service
+  service:
+    name: "{{ 'nginx' if web_server == 'nginx' else 'apache2' }}"
+    state: started
+    enabled: yes

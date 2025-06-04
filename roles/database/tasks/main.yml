@@ -1,0 +1,18 @@
+---
+- name: Install MariaDB
+  package:
+    name: mariadb
+    state: present
+  when: db_server == "mariadb"
+
+- name: Install PostgreSQL
+  package:
+    name: postgresql
+    state: present
+  when: db_server == "postgresql"
+
+- name: Enable and start DB service
+  service:
+    name: "{{ 'mariadb' if db_server == 'mariadb' else 'postgresql' }}"
+    state: started
+    enabled: yes

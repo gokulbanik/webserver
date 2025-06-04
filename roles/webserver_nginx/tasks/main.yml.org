@@ -1,0 +1,13 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for webserver_nginx
+- name: Install NGINX
+  package:
+    name: nginx
+    state: present
+
+- name: Ensure NGINX is running
+  service:
+    name: nginx
+    enabled: yes
+    state: started

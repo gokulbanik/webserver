@@ -1,0 +1,12 @@
+---
+- name: Set up Web Server
+  hosts: web
+  become: yes
+  roles:
+    - role: webserver_nginx
+
+- name: Set up Database Server
+  hosts: db
+  become: yes
+  roles:
+    - role: db_mariadb

@@ -1,0 +1,18 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for webserver_nginx
+
+
+- name: Install NGINX with required USE flags
+  ansible.builtin.command: emerge --autounmask-continue --ask=n nginx
+  args:
+    creates: /usr/sbin/nginx  # Prevents re-running if nginx is already installed
+  become: yes
+
+- name: Ensure NGINX service is enabled and started
+  ansible.builtin.service:
+    name: nginx
+    enabled: yes
+    state: started
+  become: yes
+
