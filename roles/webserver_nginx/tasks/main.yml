@@ -2,13 +2,6 @@
 ---
 # tasks file for webserver_nginx
 
-
-- name: Gather facts for Ansible control node
-  ansible.builtin.setup:
-  delegate_to: localhost
-  run_once: true
-  register: ansible_control_facts
-
 - name: Gather facts for DB host
   ansible.builtin.setup:
   delegate_to: "{{ groups['db'][0] }}"

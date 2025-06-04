@@ -1,0 +1,20 @@
+---
+- name: Gather facts on Ansible control node
+  hosts: localhost
+  gather_facts: yes
+  tasks:
+    - debug:
+        msg: "Control node facts gathered"
+
+- name: Set up Web Server
+  hosts: web
+  gather_facts: yes
+  become: yes
+  roles:
+    - role: webserver_nginx
+
+- name: Set up Database Server
+  hosts: db
+  become: yes
+  roles:
+    - role: db_mariadb
