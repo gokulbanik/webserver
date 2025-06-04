@@ -1,6 +1,18 @@
 ---
+- name: Gather facts on Ansible control node
+  hosts: localhost
+  gather_facts: yes
+  tasks:
+    - debug:
+        msg: "Control node facts gathered"
+
+- name: Show all facts
+  debug:
+    var: hostvars['localhost']
+    
 - name: Set up Web Server
   hosts: web
+  gather_facts: yes
   become: yes
   roles:
     - role: webserver_nginx
