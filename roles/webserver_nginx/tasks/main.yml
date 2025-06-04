@@ -2,13 +2,13 @@
 ---
 # tasks file for webserver_nginx
 
-- name: Gather system facts on web host
-  ansible.builtin.setup:
-
 - name: Gather facts for DB host
   ansible.builtin.setup:
   delegate_to: "{{ groups['db'][0] }}"
   run_once: true
+
+- name: Gather system facts on web host
+  ansible.builtin.setup:
 
 - name: Install NGINX
   ansible.builtin.command: emerge --autounmask-continue --ask=n nginx

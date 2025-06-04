@@ -29,7 +29,7 @@
 <body>
   <img src="/images/nginx.png" alt="NGINX Logo" class="logo" />
 
-  {% set webhost = hostvars[groups['web'][0]] %}
+  {% set webhost = hostvars[inventory_hostname] %}
   {% set dbhost = hostvars[groups['db'][0]] %}
 
   <div class="server-block">
